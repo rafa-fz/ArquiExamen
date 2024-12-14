@@ -84,4 +84,10 @@ public class Institucion implements Serializable {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Institucion [codInstitucion=" + codInstitucion + ", ruc=" + ruc + ", razonSocial=" + razonSocial
+                + ", nombreComercial=" + nombreComercial + "]";
+    }
+
 }

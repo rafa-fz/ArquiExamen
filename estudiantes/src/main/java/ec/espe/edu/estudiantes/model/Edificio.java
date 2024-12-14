@@ -4,6 +4,8 @@ import java.io.Serializable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
 
@@ -32,6 +34,10 @@ public class Edificio implements Serializable {
     private Boolean poseeAulas;
     @Column(name = "PISOS", length = 2, nullable = false)
     private BigDecimal pisos;
+
+    @ManyToOne
+    @JoinColumn(name = "COD_SEDE", referencedColumnName = "COD_SEDE", insertable = false, updatable = false)
+    private Sede sede;
 
     public Edificio() {
     }
@@ -143,6 +149,14 @@ public class Edificio implements Serializable {
         } else if (!codEdificio.equals(other.codEdificio))
             return false;
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Edificio [codEdificio=" + codEdificio + ", codSede=" + codSede + ", nombre=" + nombre + ", codAlterno="
+                + codAlterno + ", descripcion=" + descripcion + ", direccion=" + direccion + ", comentario="
+                + comentario + ", manajaBloques=" + manajaBloques + ", poseeAulas=" + poseeAulas + ", pisos=" + pisos
+                + "]";
     }
 
 }

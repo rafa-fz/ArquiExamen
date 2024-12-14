@@ -4,6 +4,8 @@ import java.io.Serializable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -13,12 +15,16 @@ public class EdificioBloque implements Serializable {
     @Id
     @Column(name = "COD_EDIFICIO_BLOQUE", length = 8, nullable = false)
     private String codEdificioBloque;
-    @Column(name = "COD_SEDE", length = 8, nullable = false)
+    @Column(name = "COD_EDIFICIO", length = 8, nullable = false)
     private String codEdificio;
     @Column(name = "NOMBRE_BLOQUE", length = 128, nullable = false)
     private String nombreBloque;
     @Column(name = "DESCRIPCION", length = 500, nullable = false)
     private String descripcion;
+
+    @ManyToOne
+    @JoinColumn(name = "COD_EDIFICIO", referencedColumnName = "COD_EDIFICIO", insertable = false, updatable = false)
+    private Edificio edificio;
 
     public EdificioBloque() {
     }
@@ -82,6 +88,12 @@ public class EdificioBloque implements Serializable {
         } else if (!codEdificioBloque.equals(other.codEdificioBloque))
             return false;
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "EdificioBloque [codEdificioBloque=" + codEdificioBloque + ", codEdificio=" + codEdificio
+                + ", nombreBloque=" + nombreBloque + ", descripcion=" + descripcion + "]";
     }
 
 }

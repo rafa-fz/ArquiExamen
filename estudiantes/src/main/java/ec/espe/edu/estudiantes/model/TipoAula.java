@@ -78,4 +78,10 @@ public class TipoAula implements Serializable {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "TipoAula [codTipoAula=" + codTipoAula + ", descripcion=" + descripcion + ", fechaCreacion="
+                + fechaCreacion + "]";
+    }
+
 }
